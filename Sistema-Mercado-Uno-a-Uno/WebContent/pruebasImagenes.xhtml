@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+    
+      >
+    <h:head>
+        <title>indexS</title>
+         
+    </h:head>
+    <h:body>
+    
+           <h2><h:outputText value="MERCADO UNO A UNO. "  font-size="12px"  font-color="red"/></h2>
+           <p:graphicImage value="/images/sam.jpg"  width="200" height="150"/>
+           <p:clock pattern="HH:mm:ss dd-MM-yyyy" />
+     
+      
+        <p:spacer style="width:320px; height:1px"/>
+        
+        <p:graphicImage value="#{company.charting}">
+        <f:param id="a" name="a" value="#{cc.attrs.a}" />
+        <f:param id="b" name="b" value="#{cc.attrs.b}" />
+        </p:graphicImage>   
+             
+             
+             
+             
+             
+           
+             
+	
+    </h:body>
+</html>

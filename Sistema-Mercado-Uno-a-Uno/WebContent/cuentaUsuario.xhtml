@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      >
+    <h:head>
+        <title>Principal</title>
+    </h:head>
+    <h:body>
+    
+             
+             <p:graphicImage value="/images/sam.jpg"  width="100" height="100"/>
+             
+             <p:separator style="width:1200px;height:30px" />          
+             <p:commandLink action="index.xhtml" value="Inicio" process="@this" >
+		     <h:outputText value="Inicio" />
+		     </p:commandLink>
+		        
+      
+      <h:form>
+    	            <h:outputLink id="lnk" value="#">
+					<h:outputText value="compra, renta, y vende" />
+				    </h:outputLink>
+					
+					<p:tooltip for="lnk">
+					<p:graphicImage value="/images/Fre.png" width="100" height="70" />
+					<h:outputText value="Visita facebock Jose Alvarado" />
+					</p:tooltip>
+                      
+                    <p:spacer style="width:400px; height:1px"/>
+                    
+                    <p:outputLabel font-size="20px;" value="Hola , #{ControladorSesion.obtenerValorSesion('administrador')}" rendered="#{ControladorSesion.tieneRol('administrador')}" />
+                    <p:spacer style="width:16px; height:1px"/>
+      
+		  
+		
+			       
+            <p:dataList value="#{MostrarDatos.listaDatos}" var="reg" colums="8" type="definition" rows="60">
+			 N: #{reg.usuario_id} 
+			<br></br> 
+			Nombre: #{reg.nombre}  #{reg.ape1}  #{reg.ape2} 
+			<br></br> 
+			Nombre de Usuario: #{reg.user}
+			<br></br> 
+			Contraseña:  #{reg.pass}
+			<br></br> 
+			Correo Electronico:  #{reg.nombre}
+			<br></br> 
+			Numero Telefonico: #{reg.telefono}
+			<f:facet name="description">
+			<p:graphicImage value="#{MostrarDatos.imagen}"  />
+			<p:separator style="width:4px;height:4px"/>
+			</f:facet>
+			</p:dataList>
+            
+            
+            
+            <p:dataList value="#{MostrarDatos.listaAnuncios}" var="valor" colums="8" type="definition" rows="60">
+		    kkakldakl
+		    Numero de anuncio: #{valor.idAnuncio} 
+		    Nombre de Usuario: #{valor.titulo}
+			<f:facet name="description">
+			<p:graphicImage value="#{MostrarDatos.imagen}"  />
+			<p:separator style="width:4px;height:4px"/>
+			</f:facet>
+			</p:dataList>
+            
+		
+        <h:form>
+        <p:fileUpload fileUploadListener="#{SubirImagen.upload}" update="msj2"
+        allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="100000" description="Select Images"/>  
+        <p:growl id="msj2" life="5000" />
+	    </h:form>
+         
+        
+    	
+    	</h:form>
+    	
+	  
+    
+    </h:body>
+</html>

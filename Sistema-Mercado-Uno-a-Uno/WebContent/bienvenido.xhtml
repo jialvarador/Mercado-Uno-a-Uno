@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      >
+    <h:head>
+        <title>Consulta el año</title>
+    </h:head>
+    <h:body>
+    <h:form>
+    
+           <h2><h:outputText value="MERCADO UNO A UNO. "  font-size="12px"  font-color="red"/></h2>
+           <p:graphicImage value="/images/sam.jpg"  width="200" height="150"/>
+           <p:clock pattern="HH:mm:ss dd-MM-yyyy" />
+     
+      
+       
+         
+       <p:separator style="width:1200px;height:30px" />          
+       
+       
+      
+        
+         <h:outputLink id="lnk" value="#">
+					<h:outputText value="Mas Info." />
+				    </h:outputLink>
+					
+					<p:tooltip for="lnk">
+					<p:graphicImage value="/images/Fre.png" width="100" height="70" />
+					<h:outputText value="el lugar donde puedes comprar, vender, rentar y anunciar" />
+					</p:tooltip>
+                   
+                     <p:separator></p:separator>
+					
+					<p:menubar>
+					    
+				   </p:menubar>
+					
+
+      
+        <p:separator></p:separator>
+          	 
+    <center>	
+       <p:panelGrid columns="2">
+					      <f:facet name="header">
+					       INICIAR SESION
+					      </f:facet>
+					      
+					      <p:outputLabel value="Usuario:" />
+					      <p:inputText required="true" maxlength="15" value="#{LoginControlador.usuario}" label="nombre" />
+					      
+					      <p:outputLabel value="Contraseña:" />
+					      <p:password value="#{LoginControlador.pwd}" feedback="true|false" />
+					      <f:facet name="footer">
+					      
+					      <p:commandButton action="#{LoginControlador.ingresar}" value="Ingresar" update="msj"/>
+					      <p:commandButton action="index.xhtml" value="cancelar" process="@this" />
+					      
+					      </f:facet>
+					      </p:panelGrid>
+  
+			                <p:growl id="msj"/>
+			
+			</center> 
+			
+    </h:form>    	
+    </h:body>
+</html>
