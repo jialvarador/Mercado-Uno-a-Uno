@@ -7,30 +7,15 @@
       xmlns:p="http://primefaces.org/ui" 
       >
     <h:head>
-        <title>Consulta el año</title>
-        <title>Wizard Example</title>
+        <title>Una Publicacion</title>
         
     <script type="text/javascript" >
         function resetWizard() {
             wiz.loadStep(wiz.cfg.steps[0], true);
         }
     </script>
-    <script language="JavaScript">
-         function oculta(id){
-         var elDiv = document.getElementById(id); //se define la variable "elDiv" igual a nuestro div
-         elDiv.style.display='none'; //damos un atributo display:none que oculta el div     
-         }
-         function muestra(id){
-         var elDiv = document.getElementById(id); //se define la variable "elDiv" igual a nuestro div
-         elDiv.style.display='block';//damos un atributo display:block que  el div     
-         }
-         window.onload = function(){/*hace que se cargue la función */
-	     oculta('Pmoral'); /*Ocultamos Pmoral*/
-	     oculta('Pfisica'); /*Ocultamos Pmoral*/
-         }
-   </script>     
-    
     </h:head>
+    
     <h:body>
     	
     	<h:form id="form">
@@ -43,11 +28,10 @@
              <p:tab id="categoria" title="Categoria" >
                 <p:panel header="Categoria">
 
-                    <h:messages errorClass="error"/>
-
+                  
                     <h:panelGrid columns="2" columnClasses="label, value">
-                      <p:outputLabel value="Categoria:" />
-                      <p:selectOneMenu id="cat" value="#{Publicar.anuncio.id_categoria}">
+                      <p:outputLabel value="Selecciona La Categoria:" />
+                      <p:selectOneMenu id="cat" value="#{Publicar.publicacion.id_categoria}">
 				        <f:selectItem itemLabel="Select One" itemValue="" />
 	    		        <f:selectItem itemLabel="Ventas" itemValue="1" />
 	    		        <f:selectItem itemLabel="Rentas" itemValue="2" />
@@ -60,174 +44,114 @@
                 </p:panel>
             </p:tab>
             
-            <p:tab id="publicacion" title="Publicacion" >
+             <p:tab id="publicacion" title="Publicacion" >
 
                 <p:panel header="Nueva Publicacion:">
 
                     <h:messages errorClass="error"/>
-
-                    <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
-                        <h:outputText value="Titulo: *" />
-                        <p:inputText required="true" label="Titulo"
-                                     value="#{Publicar.publicar.titulo}" />
-                     </h:panelGrid>
+	
+	                    <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
+	                        <h:outputText value="Titulo: *" />
+	                        <p:inputText required="true" label="Titulo" value="#{Publicar.publicacion.titulo}" />
+	                        <p:outputLabel value="Vigencia:" />
+				        	<p:calendar value="#{Publicar.publicacion.vigencia}"  pattern="yyyy-dd-MM" mindate="#{Hoy.hoy}" />
+		       	        </h:panelGrid>
+                        
+                        <p:separator style="width:1300px; height:30px" />
+                        
+                        <p:panelGrid  columns="2" rendered="#{Publicar.publicacion.id_categoria == 4}">
+                        <h:outputText value="Nombre del Anuncio:" />
+                        <p:inputText value="#{Publicar.anuncio.nombreAnuncio}"/>
+                        <p:outputLabel value="Descripcion"/>
+                        <p:inputTextarea value="#{Publicar.anuncio.descripcion}"/>
+                        
+                        </p:panelGrid>
                      
                      <br></br>
-                      <h:panelGroup rendered="#{Publicar.publicar.id_categoria == 1}" >
-                       <p:panelGrid columns="2">
-					      <f:facet name="header">
-					      Articulo
-					      </f:facet>
-					      
-					      <p:outputLabel value="Nombre:" />
-					      <p:inputText required="true" maxlength="20" value="#{Publicar.articulo.nombreArticulo}" label="nombre" />
-					      
-					      <p:outputLabel value="Precio:" />
-					      <p:spinner value="#{Publicar.articulo.costo}" />
-					      
-					      <p:messages showDetail="true" />
-                          <p:fileUpload value="#{Publicar.articulo.imagen1}" mode="simple" />
-                          <p:messages showDetail="true" />
-                          <p:fileUpload value="#{Publicar.articulo.imagen2}" mode="simple" />
-                           <p:messages showDetail="true" />
-                          <p:fileUpload value="#{Publicar.articulo.imagen3}" mode="simple" />
-                          
-
-	
-					      <f:facet name="footer">
-					      </f:facet>
-					      </p:panelGrid>
+                     
+                     
+                     <p:commandButton value="Agregar" onclick="dlg.show()"  rendered="#{Publicar.publicacion.id_categoria == 1 || Publicar.publicacion.id_categoria == 2 || Publicar.publicacion.id_categoria == 3}"/>
   
-                      </h:panelGroup>
-                      
-                </p:panel>
-            </p:tab>
-
-            <p:tab id="descripcion" title="Descripcion" >
-                <p:panel header="Descripcion:">
-
-                    <h:messages errorClass="error"/>
-
-                    <h:panelGrid columns="2" columnClasses="label, value">
-                    
-                      <h:outputText value="Descripcion: " />
-                      <p:inputTextarea value="#{Publicar.publicar.descripcion}" />
-                    
-                      <p:outputLabel value="Vigencia:" />
-					  <p:calendar value="#{Publicar.publicar.vigencia}"  pattern="yyyy-dd-MM" mindate="#{Hoy.hoy}" />s
-		          
-		           </h:panelGrid>
-                    
-                   
-                    
-                    
-                </p:panel>
-            </p:tab>
-            
-           
-            
-
-          <p:tab id="confirm" title="Confirmation" >
-                <p:panel header="Confirmation">
-
-                    <h:panelGrid id="confirmation" columns="6">
-                        <h:outputText value="Firstname: " />
-                        <h:outputText styleClass="outputLabel"
-                                      value="#{Publicar.publicar.titulo}" />
-
-                 
-                        <h:outputText value="Street: " />
-                        <h:outputText styleClass="outputLabel"
-                                      value="#{Publicar.publicar.descripcion}" />
-
-                        <h:outputText value="Street: " />
-                        <h:outputText styleClass="outputLabel"
-                                      value="#{Publicar.publicar.id_categoria}" />
-                      
-	    		       
+                      <h:panelGroup rendered="#{Publicar.publicacion.id_categoria == 1 || Publicar.publicacion.id_categoria == 2}" >
+                          <p:panelGrid columns="2">
+                          
+                          <f:facet name="header">Articulo</f:facet>
+                          <p:outputLabel value="Nombre:" />
+					      <p:inputText required="true" maxlength="20" value="#{Publicar.articulo.nombreArticulo}" label="nombre" />
+					      <p:outputLabel value="Descripcion"/>
+                          <p:inputTextarea value="#{Publicar.articulo.descripcion}"/>
+                          <p:outputLabel value="Precio:" />
+					      <p:spinner value="#{Publicar.articulo.costo}"   stepFactor="0.0"    prefix="$"    min="10" max="10000000" />
+					      <p:outputLabel value="Imagenen 1"/>
+					      <p:fileUpload value="#{Publicar.imagenes.imagen1}" invalidFileMessage="No es imagens" mode="simple" />
+                          <p:outputLabel value="Imagenen 2"/>
+					      <p:fileUpload value="#{Publicar.imagenes.imagen2}" mode="simple" />
+                          <p:outputLabel value="Imagenen 3"/>
+					      <p:fileUpload value="#{Publicar.imagenes.imagen3}" mode="simple" />
+                          <f:facet name="footer">
+					      </f:facet>
+					      
+					      </p:panelGrid>
+                       </h:panelGroup>
                        
+                        <p:outputPanel value="Anunciar"  rendered="#{Publicar.publicacion.id_categoria == 4}"/>
+                      
+                </p:panel>
+            </p:tab>
+            
+                 
+
+          <p:tab id="confirm" title="Confirmacion de Publicacion" >
+                <p:panel header="Confirmacion de Publicacion">
+                     <h:panelGrid columns="4">
+                        <p:outputLabel value="Titulo de la publicacion: " />
+                        <h:outputText />
+                        <p:outputLabel value="#{Publicar.publicacion.titulo}"/>
+                        <h:outputText />
+                        <p:outputLabel value="Vigencia de la publicacion: "/>
+                        <h:outputText />
+                        <p:outputLabel value="#{Publicar.publicacion.vigencia}"/>
                     </h:panelGrid>
 
-                    <p:commandButton immediate="true" value="Ok" update="@parent" actionListener="#{Publicar.guardar}" oncomplete="wiz.loadStep (wiz.cfg.steps [0], true)"/>
-
-                </p:panel>
-            </p:tab>
+                 <p:commandButton immediate="true" value="Ok" update="@parent,@form" action="#{Publicar.guardar}" oncomplete="wiz.loadStep (wiz.cfg.steps [0], true)"/>
+               
+               </p:panel>
+         </p:tab>
 
         </p:wizard>
 
-<input id="moral" type="button"  onclick="muestra('Pmoral'); oculta('Pfisica')" value="Moral" />
-<input id="fisica" type="button"  onclick="muestra('Pfisica'); oculta('Pmoral')" value="Fisica" />
 
-  <div id="Pfisica">
-  <p>Este contenido es para persona Fisica</p>  <!--Div para ocultar o mostrar de Persona Fisica -->
-  </div>
-  
-  
-  <div id="Pmoral">
-  <p>Este contenido es para persona Moral</p>   <!--Div para ocultar o mostrar de Persona moral -->
-  </div>
+		
   </h:form>
     	
   
-  
-  <h:form>
-    <h:selectOneMenu value="#{bean.item}">
-        <f:selectItem itemLabel="Select..." />
-        <f:selectItem itemValue="one" />
-        <f:selectItem itemValue="two" />
-        <f:selectItem itemValue="three" />
-        <f:ajax render="@form" />
-    </h:selectOneMenu>
-
-    <h:panelGroup rendered="#{bean.item == 'one'}">
-        <p>This will be shown if the selected item equals to "one".</p>
-    </h:panelGroup>
-
-    <h:panelGroup rendered="#{bean.item == 'two'}">
-        <p>This will be shown if the selected item equals to "two".</p>
-    </h:panelGroup>
-
-    <h:panelGroup rendered="#{bean.item == 'three'}">
-        <p>This will be shown if the selected item equals to "three".</p>
-    </h:panelGroup>
-</h:form>  	
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<p:dialog header="Articulo" widgetVar="dlg2" modal="true" >  
+        <p:dialog header="Agregar articulo" widgetVar="dlg" modal="true" >  
                   <p:growl id="msj" life="1000" />
                   <p:panelGrid columns="2">
-                  <f:facet name="header">
-			       INICIAR SESION
-			      </f:facet>
-			      
-			      <h:outputLabel for="firstname" value="usuario: *" />
-			      <p:inputText id="firstname" value="#{LoginControlador.nombre}" label="Firstname" required="true" />
-			      <h:outputLabel for="surname" value="contraseña: *" />
+                  
+			      <h:outputLabel value="nombre: *" />
+			      <p:inputText   />
+			      <h:outputLabel value="precio: *" />
 			      <p:inputText id="surname" value="#{LoginControlador.pwd}" label="Surname" required="true" />
 			      <f:facet name="footer">
 			      <p:commandButton value="Entrar" action="#{LoginControlador.ingresar}"  />
-			      <p:commandButton value="cancelar" onclick="dlg2.hide()"  />      
+			      <p:commandButton value="cancelar" onclick="dlg.hide()"  />      
 			      </f:facet>
 			      </p:panelGrid>
-			      </p:dialog>
+	   </p:dialog>
+
+
+
+
+    
+
+
     	
     </h:body>
 </html>

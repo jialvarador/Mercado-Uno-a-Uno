@@ -40,10 +40,14 @@ public class CapturaLogin {
 				System.out.println(" EL usuario "+nom+" lo "+pass+"existe solo"+resultado);
 				
 				if(resultado==1){
-				 	return resultado+"@Bienvenido! "+nom;
+				 	 
+					 return resultado+"@Bienvenido! "+nom;
 				 	
-				}else{
-				   return resultado+"@El usuario no esta registrado en la bse de datos.";
+				}
+				
+				else{
+				       
+					  return resultado+"@El usuario no esta registrado en la bse de datos.";
 			 	}
 
 			} catch (Exception e) {

@@ -9,80 +9,66 @@
     
       >
     <h:head>
-        <title>indexS</title>
+        <title>index</title>
+								  <!-- 
+								 <script type="text/javascript" >
+								  function recargar()
+								  {
+								  location.href=location.href
+								  }
+								  setInterval('recargar()',10000)
+								    </script>
+								   -->  
+								    
     </h:head>
     
     <h:body>
-    
-           <h2><h:outputText value="MERCADO UNO A UNO. "  font-size="12px"  font-color="red"/></h2>
-           <p:graphicImage value="/images/sam.jpg"  width="200" height="150"/>
-           <p:clock pattern="HH:mm:ss dd-MM-yyyy" />
-     
-        <p:spacer style="width:320px; height:1px"/>
-        
-        <p:outputLabel value="#{ControladorSesion.obtenerFecha()}"/>       
-        
-        <p:spacer style="width:16px; height:1px"/>
-        
-        <p:graphicImage value="#{MostrarAnuncio.imagen}"   width="100" height="100" rendered="#{ControladorSesion.tieneRol('administrador')}" />
-		
-		<p:spacer style="width:16px; height:1px"/>
-      	<p:outputLabel font-size="20px;" value="Hola , #{ControladorSesion.obtenerValorSesion('administrador')}" rendered="#{ControladorSesion.tieneRol('administrador')}" />
-        <p:spacer style="width:16px; height:1px"/>
-        <p:outputLabel  value="ID , #{ControladorSesion.obtenerValorSesioIDn('identificador')}" rendered="#{ControladorSesion.tieneRol('administrador')}" />
-        <p:spacer style="width:16px; height:1px"/>
+     <p:separator style="width:1300px;height:3px" />          
        
-        <p:commandLink action="wizard.xhtml" value="Publicar" process="@this" rendered="#{ControladorSesion.tieneRol('administrador')}">
+           <p:graphicImage value="/images/sam.jpg"  width="200" height="150"/>
+           <p:spacer style="width:100px; height:1px " />
+           <p:outputLabel value="#{ControladorSesion.obtenerFecha()}"   />       
+           <p:spacer style="width:100px; height:1px"/>
+           <p:spacer style="width:2px; " />
+       
+        
+        <p:spacer style="width:16px; height:1px"/>
+      	<p:outputLabel font-size="20px;" value="Hola , #{ControladorSesion.obtenerValorSesion('administrador')}" rendered="#{ControladorSesion.tieneSesion('administrador')}" />
+        
+        <p:spacer style="width:16px; height:1px"/>
+        <p:outputLabel  value="ID , #{ControladorSesion.obtenerValorSesioIDn('identificador')}" rendered="#{ControladorSesion.tieneSesion('administrador')}" />
+        
+        <p:spacer style="width:16px; height:1px"/>
+        <p:commandLink action="wizard.xhtml" value="Publicar" process="@this" rendered="#{ControladorSesion.tieneSesion('administrador')}">
         <h:outputText value="publicar" />
         </p:commandLink>
-        <p:spacer style="width:16px; height:1px"/>
         
-        <p:commandLink action="cuentaUsuario.xhtml" value="Cuenta" process="@this" rendered="#{ControladorSesion.tieneRol('administrador')}">
+        <p:spacer style="width:16px; height:1px"/>
+        <p:commandLink action="cuentaUsuario.xhtml" value="Cuenta" process="@this" rendered="#{ControladorSesion.tieneSesion('administrador')}">
         <h:outputText value="cuenta" />
         </p:commandLink>
          
         <p:spacer style="width:16px; height:1px"/>
-        
-        <p:commandLink action="#{ControladorSesion.cerrarSesion}" value="Cerrar sesiòn" process="@this" rendered="#{ControladorSesion.tieneRol('administrador')}">
+        <p:commandLink action="#{ControladorSesion.cerrarSesion}" value="Cerrar sesiòn" process="@this" rendered="#{ControladorSesion.tieneSesion('administrador')}">
         <h:outputText value="Cerrar sesión" />
         </p:commandLink>
         
-        <p:spacer style="width:16px; height:1px"/>
         
-        <p:commandLink action="bienvenido.xhtml" value="Iniciar sesion" process="@this" >
+        
+        
+        <p:spacer style="width:16px; height:1px" />
+        <p:commandLink action="bienvenido.xhtml" value="Iniciar sesion" process="@this" rendered="#{ControladorSesion.ocultarEnSesion('administrador')}" >
         <h:outputText value="Iniciar sesion" />
         </p:commandLink>
         
         <p:spacer style="width:16px; height:1px"/>
-        
-        <p:commandLink action="nuevo_usuario.xhtml" value="registrarse" process="@this" >
+        <p:commandLink action="nuevo_usuario.xhtml" value="registrarse" process="@this" rendered="#{ControladorSesion.ocultarEnSesion('administrador')}" >
         <h:outputText value="Registrase" />
         </p:commandLink>
-        
-        <p:separator style="width:1200px;height:30px" />          
+    
+       <p:separator style="width:1300px; height:20px" />          
        
-       <center>
-         <p:galleria effect="slide" effectDuration="1000" autoPlay="TRUE" panelWidth="800" panelHeight="200">
-                     <p:graphicImage value="/images/1.jpg" title="image1" alt="image1 desc"  />
-			         <p:graphicImage value="/images/1.jpg" title="image1" alt="image1 desc" />
-			         <p:graphicImage value="/images/un (2).jpg" title="image2" alt=" image2 desc" />
-			         <p:graphicImage value="/images/2.jpg" title="image2" alt=" image2 desc" />
-			         <p:graphicImage value="/images/un (3).jpg" title="image3" alt=" image3 desc" />
-			         <p:graphicImage value="/images/image4.png" title="image4" alt=" image4 desc" />
-			         <p:graphicImage value="/images/un (4).jpg" title="image3" alt=" image3 desc" />
-			         <p:graphicImage value="/images/image5.png" title="image5" alt=" image5 desc" />
-			         <p:graphicImage value="/images/un (5).jpg" title="image3" alt=" image3 desc" />
-			         <p:graphicImage value="/images/image6.png" title="image6" alt=" image6 desc" />
-			         <p:graphicImage value="/images/un (6).jpg" title="image3" alt=" image3 desc" />
-			         <p:graphicImage value="/images/un (7).jpg" title="image3" alt=" image3 desc" />
-			         <p:graphicImage value="/images/un (8).jpg" title="image3" alt=" image3 desc" />
-			         <p:graphicImage value="/images/un (9).jpg" title="image3" alt=" image3 desc" />
-			         
-			        
-			         <p:graphicImage value="/images/image7.png" title="image71" alt=" image7 desc" />
-		  </p:galleria>
-      </center>
-      
+
         
          <h:form>
     	    <h:outputLink id="lnk" value="#">
@@ -96,17 +82,6 @@
                    
                      <p:separator></p:separator>
 					
-					<p:menubar>
-					      <p:submenu label="Mail">
-							      <p:menuitem value="Gmail" url="http://www.google.com" />
-							      <p:menuitem value="Hotmail" url="http://www.hotmail.com" />
-							      <p:menuitem value="Yahoo Mail" url="http://mail.yahoo.com" />
-					      </p:submenu>
-					      <p:submenu label="buscar">
-							      <p:menuitem value="Youtube" url="http://www.youtube.com" />
-							      <p:menuitem value="Break" url="http://www.break.com" />
-					     </p:submenu>
-				   </p:menubar>
 					
 
         <p:growl id="msj"/>
@@ -116,41 +91,90 @@
             
             
            <p:spacer style="width:320px; height:1px"/>
-     	
            
-			
-			 <p:dataTable id="userList" var="user" value="#{MostrarAnuncio.listaAnuncio}"  editable="true" rowKey="#{user.nombreCategoria}" >
+<p:panelGrid columns="3" >     	
+					
+					<p:panelGrid columns="4">
+					     <p:graphicImage value="/images/sam.jpg" height="200" width="200" />
+			             <strong>Publicá GRATIS en Mercado Uno a Uno</strong>
+				         <p><strong >Publicá gratis tu aviso.</strong></p>
+					     <p>Encontrá lo que quieras.</p>
+					     <p>Donde quieras.</p>
+					     <p:graphicImage value="/images/modelo.jpg" height="400" width="250" />
+					     <span>¡100% gratis, rápido y fácil!</span>
+					     <p>¿Tienés algo para vender?</p>
+					</p:panelGrid>
+					
+					
+				    <p:panelGrid columns="2">
+					    <p:outputLabel value="Buscar"/>
+					    <p:selectOneMenu id="cat" value="#{BuscarCategoria.categoriaID}" required="hola" >
+				        <f:selectItem itemLabel="Selecciona una Categoria" itemValue="0" />
+	    		        <f:selectItem itemLabel="Ventas" itemValue="1" />
+	    		        <f:selectItem itemLabel="Rentas" itemValue="2" />
+	    		        <f:selectItem itemLabel="Articulos perdidos" itemValue="3" />
+	    		        <f:selectItem itemLabel="Anuncios" itemValue="4" />
+	    		        </p:selectOneMenu>
+	    		        <p:outputLabel />
+					    <p:commandButton value="ok"  action="#{BuscarCategoria.buscarPorCategoria}" />
+					</p:panelGrid>
+				
+				        
+</p:panelGrid>
+	
+		   
+		    <p:dataTable id="userList" var="user" value="#{MostrarPublicacion.listaPublicacion}"  editable="true" rowKey="#{user.nombreCategoria}" emptyMessage="No Hay cocidencias">
 
-            <p:column headerText="Categoria" style="width:125px" filterBy="#{user.nombreCategoria}" sortBy="#{user.nombreCategoria}">
-            
+            <p:column headerText="Categoria" style="width:125px" filterBy="#{user.nombreCategoria}" sortBy="#{user.nombreCategoria}" />
+            <p:column headerText="Titulo" style="width:125px" filterBy="#{user.titulo}" sortBy="#{user.titulo}" />
+             <p:column headerText="Categoria:">
+                  <h:outputText value="#{user.nombreCategoria}"/>
             </p:column>
-          
+        
             <p:column >
-                    <h:outputLink id="lnk" value="index.xhtml" >
-					<h:outputText value="#{user.titulo}"  />
-				    </h:outputLink>
-				    <br></br>
-				    <p:outputLabel value="Comentarios:"/>
-				    <br></br>
-				    <p:inputTextarea />
-				    <br></br>
-				    <p:commandButton value="comentar"/>
+                 <p:graphicImage  value="/images/#{user.idPublicacion}.jpg" width="100" height="100" />
+            </p:column>
+            
+            <p:column headerText="Titulo">
+          		  <p:commandLink action="wizard.xhtml" value="#{user.titulo}" process="@this" />
+            </p:column>        
                    
-            </p:column>
-            
-            <p:column headerText="Descripcion:">
-                  <h:outputText value="#{user.descripcion}" />
-            </p:column>
-            
-            
+           
             <p:column >
                   <h:outputText value="#{user.fecha}" />
             </p:column>
             
+            
+			 <p:column headerText="  "> 
+			 
+			 <p:commandButton id="lnk" action="#{MostrarDetalles.acer}" value="Realizar Oferta" update="userList">
+			 <f:setPropertyActionListener target="#{MostrarDetalles.seleccion}" value="#{user}"/>
+			 </p:commandButton>
+			 
+			 <p:tooltip for="lnk">
+					<p:graphicImage value="/images/#{user.idPublicacion}.jpg" width="100" height="70" />
+					<h:outputText value="El lugar donde puedes comprar, vender, rentar y anunciar" />
+			     </p:tooltip>
+                
+			 </p:column> 
+			 
+             <p:column headerText="link"> 
+			 <p:commandLink  action="#{MostrarPublicacion.eliminar}" value="ok" update="userList">    
+			 <f:setPropertyActionListener target="#{MostrarPublicacion.seleccion}" value="#{user}"/>
+			 </p:commandLink>
+			 </p:column> 
+			
+			
+            </p:dataTable>	
          
-         </p:dataTable>		
-			</h:form>
+         
+         
+         	
+		</h:form>
+		
+		<p class="f-right">Pagina Web presentada por Jose Inocencio Alvarado Rodriguez</p>
+        <p>Copyright © 2013 <strong>Universidad Autonoma de Tlaxcala</strong>, All Rights Reserved &reg;</p>
+        
     </h:body>
-    
-    
+        
 </html>

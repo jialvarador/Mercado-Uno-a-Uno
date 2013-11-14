@@ -105,11 +105,10 @@ import mx.MY.sistema.ado.CapturaLogin;;
 		 */
 		public void mostrarMensaje(String mensaje){
 			System.out.println("mostrando mensaje...");
-			FacesContext context = FacesContext.getCurrentInstance();
-			//context.addMessage(null, new FacesMessage(mensaje));
-			context.addMessage("",new FacesMessage(FacesMessage.SEVERITY_FATAL, mensaje, mensaje));
 			
-			//FacesContext.getCurrentInstance().addMessage("",new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid" );
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage(mensaje));
+			
 		}
 		
 		/**

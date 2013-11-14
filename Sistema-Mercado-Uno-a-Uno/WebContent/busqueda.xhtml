@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      >
+    <h:head>
+        <title>Busqueda</title>
+    </h:head>
+    <h:body>
+    
+             <p:graphicImage value="/images/sam.jpg"  width="100" height="100"/>
+             <p:separator style="width:1200px;height:30px" />          
+   
+      <h:form>
+    	            <h:outputLink id="lnk" value="#">
+				   <h:outputText value="comprar, vender, rentar y anunciar" />
+					 </h:outputLink>
+					
+					<p:tooltip for="lnk">
+					<p:graphicImage value="/images/Fre.png" width="100" height="70" />
+					<h:outputText value="el lugar donde puedes comprar, vender, rentar y anunciar" />
+					</p:tooltip>
+                   
+                     <p:separator></p:separator>
+				     
+				     
+				     
+	<p:commandButton action="#{BuscarCategoria.redireccionar(' ')}" value="Regresar" process="@this" />
+		    
+		    
+		    <p:dataTable id="userList" var="user" value="#{BuscarCategoria.listaArticulos}"  editable="true" rowKey="#{user.nombreCategoria}" emptyMessage="No Hay cocidencias" rendered="#{BuscarCategoria.categoriaID == 4}">
+
+            <p:column headerText="Articulo:" style="width:1px" filterBy="#{user.nombreArticulo}" sortBy="#{user.nombreArticulo}" />
+            
+            <p:column >
+                 <p:graphicImage  value="/images/#{user.idArticulo}.jpg" width="100" height="100" />
+            </p:column>
+        
+             <p:column headerText="Titulo">
+          		  <p:commandLink action="wizard.xhtml" value="#{user.idArticulo}" process="@this" />
+            </p:column>        
+           
+            
+           <p:column >
+          		  #{user.nombreArticulo}
+            </p:column>        
+            
+            
+           <p:column >
+          		 #{user.descripcion}
+            </p:column>        
+            
+            <p:column>
+          		 #{user.costo}
+            </p:column>        
+                 
+             
+			
+			
+            </p:dataTable>	
+            
+            
+            
+            
+		    <p:dataTable  var="user" value="#{BuscarCategoria.listaAnuncio}"  editable="true" rowKey="#{user.nombreCategoria}" emptyMessage="No Hay cocidencias">
+
+            
+            <p:column >
+                 <p:graphicImage  value="/images/#{user.idAnuncio}.jpg" width="100" height="100" />
+            </p:column>
+        
+             <p:column>
+          		  <p:commandLink action="wizard.xhtml" value="#{user.idAnuncio}" process="@this" />
+            </p:column>        
+           
+           
+             <p:column>
+          		  <p:commandLink action="wizard.xhtml" value="#{user.nombreAnuncio}" process="@this" />
+            </p:column>        
+        
+             <p:column>
+          		  <p:commandLink action="wizard.xhtml" value="#{user.descripcion}" process="@this" />
+            </p:column>        
+        
+           </p:dataTable>	
+   	         
+    	
+    	</h:form>
+    	
+    	
+    	
+    	
+    	    
+                  <p:dialog header="Articulo" widgetVar="dlg" modal="true" >  
+                  <p:growl id="msj" life="1000" />
+                  <p:panelGrid columns="2">
+                  
+                  <h:outputLabel for="costo" value="Precio: *" />
+			      <p:inputText id="costo" value="#{LoginControlador.nombre}" label="precio" required="true" />
+			      
+			       
+			      <f:facet name="footer">
+			      <p:commandButton value="Ok" action="#{LoginControlador.ingresar}"  />
+			      <p:commandButton value="cancelar" onclick="dlg.hide()"  />      
+			      </f:facet>
+			      
+			      </p:panelGrid>
+			      </p:dialog>
+			
+    
+    </h:body>
+</html>

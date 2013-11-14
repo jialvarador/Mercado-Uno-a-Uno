@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui" 
       >
     <h:head>
-        <title>Consulta el año</title>
+        <title>bienvenido</title>
     </h:head>
     <h:body>
     <h:form>
@@ -56,14 +56,15 @@
 					      <p:password value="#{LoginControlador.pwd}" feedback="true|false" />
 					      <f:facet name="footer">
 					      
-					      <p:commandButton action="#{LoginControlador.ingresar}" value="Ingresar" update="msj"/>
+					      <p:commandButton action="#{LoginControlador.ingresar}" value="Ingresar" update="msj_sesion"/>
 					      <p:commandButton action="index.xhtml" value="cancelar" process="@this" />
 					      
 					      </f:facet>
+					       <p:growl id="msj_sesion"/>
+			
 					      </p:panelGrid>
   
-			                <p:growl id="msj"/>
-			
+			               
 			</center> 
 			
     </h:form>    	

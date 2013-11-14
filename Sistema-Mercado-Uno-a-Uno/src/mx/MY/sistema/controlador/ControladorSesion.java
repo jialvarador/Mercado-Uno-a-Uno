@@ -18,9 +18,19 @@ import javax.faces.context.FacesContext;
 		public String obtenerFecha(){
 
 			  String dia = "";
+			  String MES="";
+			  
+			  
 		        Calendar cal = Calendar.getInstance();
 		        cal.setTime(new Date());
+               		      
 		        int diaInt = cal.get(Calendar.DAY_OF_WEEK);
+		        int diaLt= cal.get(Calendar.DAY_OF_MONTH);
+		        int me=cal.get(Calendar.MONTH);	
+		        int anio=cal.get(Calendar.YEAR);
+		        int mes=me+1;	
+		        	
+		        	
 		        switch (diaInt) {
 		            case 1:
 		                dia = "Domingo";
@@ -45,7 +55,53 @@ import javax.faces.context.FacesContext;
 		                break;
 
 		        }
-		        return "Hoy es: "+dia;
+		        
+		        
+		    	
+		        switch (mes) {
+		            case 1:
+		            	MES= "Enero";
+		                break;
+		            case 2:
+		            	MES = "Febrero";
+		                break;
+		            case 3:
+		            	MES = "Marzo";
+		                break;
+		            case 4:
+		            	MES = "Abril";
+		                break;
+		            case 5:
+		            	MES = "Mayo";
+		                break;
+		            case 6:
+		            	MES = "Junio";
+		                break;
+		            case 7:
+		            	MES = "Julio";
+		                break;
+		            case 8:
+		            	MES = "Agosto";
+		                break;
+		            case 9:
+		            	MES = "Septiembre";
+		                break;
+		            case 10:
+		            	MES = "Octubre";
+		                break;
+		            case 11:
+		            	MES = "Noviembre";
+		                break;
+		            case 12:
+		            	MES = "Diciembre";
+		                break;
+
+		                
+
+		        }
+		        
+		        
+		        return " "+dia +" "+diaLt+" de "+MES+" de "+anio;
 
 		}
 	
@@ -68,13 +124,12 @@ import javax.faces.context.FacesContext;
 				}
 		
 				/**
-				 * Metodo que indica si tiene un rol
+				 * Metodo que indica si tiene una sesion activa
 				 * @param rol
 				 * @return
 				 */
-				public boolean tieneRol(String rol){
-					String valor=obtenerValorSesion(rol);
-
+				public boolean tieneSesion(String activo){
+					String valor=obtenerValorSesion(activo);
 
 					if(valor==null)
 						return false;
@@ -85,6 +140,25 @@ import javax.faces.context.FacesContext;
 					}
 				}
 				
+				/**
+				 * Metodo que indica si tiene una sesion activa
+				 * @param activa
+				 * @return
+				 */
+				public boolean ocultarEnSesion(String oculta){
+					String valor=obtenerValorSesion(oculta);
+					
+					if(valor==null)
+						return true;
+					
+					if(!valor.equals("")){
+					   return false;
+					}
+					
+					else{
+						return true;
+					}
+				}
 				
 				/**
 				 * Metodo para obtener un valor

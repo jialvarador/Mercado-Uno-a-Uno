@@ -15,16 +15,8 @@ public class CapturaUsuario {
          
 	private UsuarioTO     usuario;
 	
-	@SuppressWarnings("unused")
-	
-private void inicializar() {
-		
-	    System.out.println("inicializar EN CAPTURA");
-	    CapturaUsuario capturaUsuario = new CapturaUsuario();
-	    usuario = new UsuarioTO();
-	}
 
-   public String guardaUsuario(UsuarioTO to){
+public String guardaUsuario(UsuarioTO to){
 		System.out.println("OK ENTRADO A SENTENCIAS....");
 		try{
 			
@@ -37,10 +29,10 @@ private void inicializar() {
 				
 		  	CallableStatement callableStatement = connection.prepareCall(sql);
 		    callableStatement.execute();
+		    
 			FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(null, new FacesMessage("hola "+to.getNombre()+" "+to.getApe1()+" "+ to.getApe2()));
-			return "Nombre almacenado ! ";
-		
+			context.addMessage(null, new FacesMessage("Registro Exitoso "+to.getNombre()+" "+to.getApe1()+" "+ to.getApe2()));
+			
 		    
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -110,20 +102,15 @@ private void inicializar() {
 						  context.addMessage(null, new FacesMessage("El nombre de usuario esta ocupado"));
 					
 				    	}
-				      
-				     
-				    return 1;
-				}
+				            return 1;
+				       }
 			  
-			  else{
-				      return 0;
-			       }
+			           else{
+				               return 0;
+			               }
 			
 			   
-			  
-			  
-
-			} catch (Exception e) {
+			 } catch (Exception e) {
 				e.printStackTrace();
 			}
 		}catch(Exception ex){

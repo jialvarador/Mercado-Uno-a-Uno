@@ -1,6 +1,5 @@
 package mx.MY.sistema.ado;
 
-import java.io.InputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
-
-import org.primefaces.model.DefaultStreamedContent;
 
 import mx.MY.sistema.beans.AnuncioTO;
 import mx.MY.sistema.beans.UsuarioTO;
@@ -44,12 +41,15 @@ public class ConsultaDatosADO {
 	
 	
 
+	
+	
+	
+	
 	public List<UsuarioTO> buscarDatos() {
 		Statement stmt = null;
 		System.out.println("buscar buscar datos");
 		
 		List<UsuarioTO> listado = new ArrayList<UsuarioTO>();
-		List<AnuncioTO> list = new ArrayList<AnuncioTO>();
 		
 		try{
 		try {
@@ -83,30 +83,7 @@ public class ConsultaDatosADO {
 	    
 	    
 	 
-		String sqlR = "SELECT `idanuncio`,`titulo`,`idanuncio`,`imagen1` FROM `anuncios`;";
-		CallableStatement callableStatement1 = connection.prepareCall(sqlR);
-	    callableStatement1.execute();
-	    
-	    stmt=connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
-	    ResultSet.CONCUR_UPDATABLE);
-	    stmt.setQueryTimeout(30);
-	    ResultSet resultSet1 = stmt.executeQuery(sql);
-	    
-	    
-	    while (resultSet1.next()) {
-	    	
-	    	AnuncioTO ms= new AnuncioTO();
-	    	
-	    	ms.setIdAnuncio(resultSet1.getInt(1));
-	    	ms.setTitulo(resultSet1.getString(2));
-	        InputStream data = resultSet1.getBinaryStream(3);
-	        ms.setImageA(new DefaultStreamedContent(data,"image/jpg"));
-	        list.add(ms);
-
-		       System.out.println(ms.getImageA()+"+******+");
-		    	
-	    }
-	    
+	  
 	    
 	    
 	    
@@ -123,6 +100,8 @@ public class ConsultaDatosADO {
 	
 	
 	
+	
+
 	
 
 	

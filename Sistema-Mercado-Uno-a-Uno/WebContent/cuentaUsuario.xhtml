@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui" 
       >
     <h:head>
-        <title>Principal</title>
+        <title>Cuenta usuario</title>
     </h:head>
     <h:body>
     
@@ -32,52 +32,43 @@
                       
                     <p:spacer style="width:400px; height:1px"/>
                     
-                    <p:outputLabel font-size="20px;" value="Hola , #{ControladorSesion.obtenerValorSesion('administrador')}" rendered="#{ControladorSesion.tieneRol('administrador')}" />
+                    <p:outputLabel font-size="20px;" value="Hola , #{ControladorSesion.obtenerValorSesion('administrador')}" rendered="#{ControladorSesion.obtenerValorSesion('administrador')}" />
                     <p:spacer style="width:16px; height:1px"/>
       
 		  
 		
 			       
             <p:dataList value="#{MostrarDatos.listaDatos}" var="reg" colums="8" type="definition" rows="60">
-			 N: #{reg.usuario_id} 
-			<br></br> 
-			Nombre: #{reg.nombre}  #{reg.ape1}  #{reg.ape2} 
-			<br></br> 
-			Nombre de Usuario: #{reg.user}
-			<br></br> 
-			Contraseña:  #{reg.pass}
-			<br></br> 
-			Correo Electronico:  #{reg.nombre}
-			<br></br> 
-			Numero Telefonico: #{reg.telefono}
-			<f:facet name="description">
-			<p:graphicImage value="#{MostrarDatos.imagen}"  />
-			<p:separator style="width:4px;height:4px"/>
-			</f:facet>
-			</p:dataList>
-            
-            
-            
-            <p:dataList value="#{MostrarDatos.listaAnuncios}" var="valor" colums="8" type="definition" rows="60">
-		    kkakldakl
-		    Numero de anuncio: #{valor.idAnuncio} 
-		    Nombre de Usuario: #{valor.titulo}
-			<f:facet name="description">
-			<p:graphicImage value="#{MostrarDatos.imagen}"  />
-			<p:separator style="width:4px;height:4px"/>
-			</f:facet>
-			</p:dataList>
-            
-		
-        <h:form>
-        <p:fileUpload fileUploadListener="#{SubirImagen.upload}" update="msj2"
-        allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="100000" description="Select Images"/>  
-        <p:growl id="msj2" life="5000" />
-	    </h:form>
-         
-        
-    	
-    	</h:form>
+			 <p:panelGrid columns="2">
+			     <f:facet name="header">
+					       Datos Personales
+			     </f:facet>
+					   
+			
+			 <p:outputLabel value="Id usuario:" />
+		     <p:outputLabel value="#{reg.usuario_id} "/>
+		     
+			 <p:outputLabel value="	Nombre:" />
+			 <p:outputLabel value="	#{reg.nombre}  #{reg.ape1}  #{reg.ape2}"/>
+			 
+			 <p:outputLabel value=" Nombre de Usuario:" />
+			 <p:outputLabel value=" #{reg.user}"/>
+			 
+			 <p:outputLabel value=" Contraseña:" />
+			 <p:outputLabel value=" #{reg.pass}"/>
+			 
+			 <p:outputLabel value="	Correo Electronico:" />
+			 <p:outputLabel value="	#{reg.nombre}" />
+			 
+			 <p:outputLabel value="	Numero Telefonico:" />
+			 <p:outputLabel value="	#{reg.telefono}" />
+			 
+			 </p:panelGrid>
+			 <p:separator style="width:4px;height:4px"/>
+			 </p:dataList>
+             <p:commandButton action="index.xhtml" value="Regresar" process="@this" />
+					    
+         </h:form>
     	
 	  
     

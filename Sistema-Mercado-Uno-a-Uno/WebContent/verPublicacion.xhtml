@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      >
+    <h:head>
+        <title>Detalles de la Publicacion</title>
+    </h:head>
+    <h:body>
+    
+             <p:graphicImage value="/images/sam.jpg"  width="100" height="100"/>
+             <p:separator style="width:1200px;height:30px" />          
+   
+      <h:form>
+    	            <h:outputLink id="lnk" value="#">
+				   <h:outputText value="comprar, vender, rentar y anunciar" />
+					 </h:outputLink>
+					
+					<p:tooltip for="lnk">
+					<p:graphicImage value="/images/Fre.png" width="100" height="70" />
+					<h:outputText value="el lugar donde puedes comprar, vender, rentar y anunciar" />
+					</p:tooltip>
+                   
+                     <p:separator></p:separator>
+				     
+				     <p:panelGrid columns="2">
+				     
+				     <p:outputLabel value="Numero de Publicacion: " />
+				     <p:outputLabel value="#{MostrarDetalles.seleccion.idPublicacion}" />
+				     <p:outputLabel value="Titulo: " />
+				     <p:outputLabel value="#{MostrarDetalles.seleccion.titulo}" />
+				     <p:outputLabel value="Vigencia: " />
+				     <p:outputLabel value="#{MostrarDetalles.seleccion.vigencia}" />
+				     <p:graphicImage  value="/images/#{MostrarDetalles.seleccion.idPublicacion}.jpg" width="100" height="100" />
+                     <p:graphicImage  value="/images/#{MostrarDetalles.seleccion.idPublicacion+1}.jpg" width="100" height="100" />
+                     <p:graphicImage  value="/images/#{MostrarDetalles.seleccion.idPublicacion+2}.jpg" width="100" height="100" />
+                     <p:graphicImage  value="/images/#{MostrarDetalles.seleccion.idPublicacion+3}.jpg" width="100" height="100" />
+          
+				       
+				      <f:facet name="footer">
+			          </f:facet>
+			    
+				     </p:panelGrid>
+				     
+		    <p:dataList value="#{MostrarDetalles.listaTodo}" var="reg" colums="8" type="definition" rows="60">
+			
+			 <p:panelGrid columns="1">
+			     <f:facet name="header">
+					       Detalles:
+			     </f:facet>
+					   
+			 <p:outputLabel value="#{reg.nombreArticulo} "/>
+		     <p:outputLabel value="#{reg.descripcionArticulo} "/>
+		     <p:outputLabel value="#{reg.costo} "/>
+		     
+		     <p:separator style="width:400px;height:4px"/>
+		     <p:outputLabel value="Comentarios"/>
+			 <p:inputTextarea />
+			 
+			 
+			 <p:commandButton value="Ofrecer"   onclick="dlg.show()" />
+			 
+		     </p:panelGrid>
+		     
+		     <p:separator style="width:4px;height:4px"/>
+			 </p:dataList>
+             
+             <p:commandButton action="#{MostrarDetalles.redireccionar(' ')}" value="Regresar" process="@this" />
+		
+    	         
+    	
+    	</h:form>
+    	
+    	
+    	
+    	
+    	    
+                  <p:dialog header="Articulo" widgetVar="dlg" modal="true" >  
+                  <p:growl id="msj" life="1000" />
+                  <p:panelGrid columns="2">
+                  
+                  <h:outputLabel for="costo" value="Precio: *" />
+			      <p:inputText id="costo" value="#{LoginControlador.nombre}" label="precio" required="true" />
+			      
+			       
+			      <f:facet name="footer">
+			      <p:commandButton value="Ok" action="#{LoginControlador.ingresar}"  />
+			      <p:commandButton value="cancelar" onclick="dlg.hide()"  />      
+			      </f:facet>
+			      
+			      </p:panelGrid>
+			      </p:dialog>
+			
+    
+    </h:body>
+</html>
