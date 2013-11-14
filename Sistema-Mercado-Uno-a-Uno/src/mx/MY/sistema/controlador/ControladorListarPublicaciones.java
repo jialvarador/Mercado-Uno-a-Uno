@@ -19,8 +19,10 @@ import mx.MY.sistema.beans.PublicacionTO;
 public class ControladorListarPublicaciones {
 
 	private String imagen;
+	
 	private PublicacionTO publicacion;
 	private List<PublicacionTO> listaPublicacion;
+	
 	private PublicacionTO		seleccion;
 
 	
@@ -36,6 +38,7 @@ public void inicializar(){
 	     
 	    seleccion= new PublicacionTO();
 	    publicacion= new PublicacionTO();
+	    
 	    System.out.println("Metodo inicializar en ControladorPublicacion....");
 	    ConsultaPublicaciones consultaPublicacion = new ConsultaPublicaciones();
 	    listaPublicacion=consultaPublicacion.buscarPublicaciones();
